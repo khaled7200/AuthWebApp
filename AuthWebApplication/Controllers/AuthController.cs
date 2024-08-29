@@ -1,5 +1,7 @@
-﻿using AuthWebApplication.Models.Uow;
+﻿using AuthWebApplication.Models;
+using AuthWebApplication.Models.Uow;
 using AuthWebApplication.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -8,14 +10,17 @@ namespace AuthWebApplication.Controllers
     public class AuthController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly SignInManager<AppUser> signInManager;
 
-        public AuthController(IUnitOfWork unitOfWork)
+        public AuthController(IUnitOfWork unitOfWork,SignInManager<AppUser> signInManager)
         {
             this.unitOfWork = unitOfWork;
+            this.signInManager = signInManager;
         }
         public IActionResult Login()
         {
-           
+            if (signInManager.IsSignedIn(User))
+                return RedirectToAction("Index", "Home");
             return View();
         }
 
@@ -35,6 +40,8 @@ namespace AuthWebApplication.Controllers
 
         public IActionResult Register()
         {
+            if (signInManager.IsSignedIn(User))
+                return RedirectToAction("Index", "Home");
             return View();
         }
 
