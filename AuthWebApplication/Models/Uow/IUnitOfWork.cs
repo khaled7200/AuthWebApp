@@ -6,5 +6,6 @@ namespace AuthWebApplication.Models.Uow
     public interface IUnitOfWork
     {
         public IAuthService AuthService { get; }
+        public IUserService UserService { get; }
     }
 }

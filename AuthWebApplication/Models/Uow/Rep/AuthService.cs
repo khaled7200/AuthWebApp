@@ -4,6 +4,7 @@ using AuthWebApplication.Models.Uow.IRep;
 using AuthWebApplication.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace AuthWebApplication.Models.Uow.Rep
 {
@@ -54,7 +55,7 @@ namespace AuthWebApplication.Models.Uow.Rep
         {
             try
             {
-          var str= await  new ImageManager(hostEnvironment: hostEnvironment).SavePhotoAsync(registerVM.ImageFile, registerVM.Username);
+                var str= await  new ImageManager(hostEnvironment: hostEnvironment).SavePhotoAsync(registerVM.ImageFile, registerVM.Username);
                 var user =new AppUser() { Email=registerVM.Email,UserName=registerVM.Username,ImagePath=str};
             return  await  userManager.CreateAsync(user, registerVM.Password);
 

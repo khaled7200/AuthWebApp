@@ -19,6 +19,8 @@ namespace AuthWebApplication.Models.Uow
             this.hostEnvironment = hostEnvironment;
         }
 
-        public IAuthService AuthService { get => new AuthService(appDbContext,userManager,signInManager,hostEnvironment); }
+        public IAuthService AuthService => new AuthService(appDbContext,userManager,signInManager,hostEnvironment); 
+
+        public IUserService UserService => new UserService(appDbContext);
     }
 }

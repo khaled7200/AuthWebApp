@@ -50,7 +50,11 @@ namespace AuthWebApplication.Controllers
             {
           var res=await  unitOfWork.AuthService.Register(registerView);
 
-            if (res.Succeeded) { return RedirectToAction("Login"); }
+            if (res.Succeeded) 
+            {
+
+                return RedirectToAction("Login");
+            }
             else
             {
                 foreach (var item in res.Errors)

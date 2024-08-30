@@ -2,7 +2,19 @@
     ViewData["Title"] = "Home Page";
 }
 
+
+@if (User.Identity != null && User.Identity.IsAuthenticated)
+{
+
+
+    <div class="d-flex justify-content-center align-items-center">
+        <img width="200px" height="200px" style="border-radius:110px" src="@Url.Content("~/Images/"+@ViewBag.UserImage)" />
+
+    </div>
+}
+
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">Ecommerce store</a>.</p>
+    <p>You are now in Home Page.</p>
 </div>
+
